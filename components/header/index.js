@@ -1,4 +1,5 @@
 "use client";
+import { UserButton } from "@clerk/nextjs";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,15 +10,17 @@ export default function Header() {
     <header className="bg-gray-800">
       <nav className="flex items-center justify-between px-4 py-2">
         <div className="flex items-center">
-          <h1 className="text-white text-2xl font-bold">My Next App</h1>
+          <Link href="/">
+            <h1 className="text-white text-2xl font-bold">My Next App</h1>
+          </Link>
         </div>
         <ul className="flex space-x-4">
           <li>
             <Link
-              href="/"
-              className={`text-white ${path.startsWith("/") ? "underline font-bold" : ""}`}
+              href="/profile"
+              className={`text-white ${path.startsWith("/profile") ? "underline font-bold" : ""}`}
             >
-              Home
+              Profile
             </Link>
           </li>
           <li>
@@ -37,6 +40,9 @@ export default function Header() {
             </Link>
           </li>
         </ul>
+        <div className="flex">
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </nav>
     </header>
   );
